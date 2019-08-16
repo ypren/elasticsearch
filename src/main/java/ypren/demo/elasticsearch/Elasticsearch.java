@@ -10,7 +10,12 @@ import org.springframework.context.ApplicationContext;
 public class Elasticsearch {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Elasticsearch.class, args);
-        ctx.getBean(Query.class).query();
+        try {
+            ctx.getBean(Query.class).query();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
         System.exit(0);
     }
 }
